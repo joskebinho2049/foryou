@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 My Golden Rosanna 🌟</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eeaeca, #edb2d6, #edb4d8, #e9ba94);
+            color: #827f7d;
+            font-family: 'Verdana', sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            width: 100%;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2); 
+            font-size: 1.5em;
+            animation: fall linear infinite;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .sparkle {
+            font-size: 2em;
+            animation: sparkle 1.5s infinite alternate;
+            margin: 10px auto;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1); color: #ffcc00; }
+            50% { transform: scale(1.2); color: #ff6699; }
+            100% { transform: scale(1); color: #66ccff; }
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #ffb3d9, #ff80bf);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.4);
+            font-size: 1.1em;
+            color: #4d4c4c;
+            margin: 20px auto;
+            max-width: 90%;
+            cursor: pointer;
+            overflow: hidden;
+            transform: perspective(600px);
+            transition: height 0.3s ease, opacity 0.5s ease;
+            max-height: 70vh;
+            overflow-y: auto;
+            animation: gradientShift 50s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background: linear-gradient(135deg, #ffb3d9, #ff80bf); }
+            25% { background: linear-gradient(135deg, #ff80bf, #ff99cc); }
+            50% { background: linear-gradient(135deg, #ff99cc, #ffb3d9); }
+            75% { background: linear-gradient(135deg, #ffb3d9, #ff80bf); }
+            100% { background: linear-gradient(135deg, #ff80bf, #ff99cc); }
+        }
+
+        .message-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .message-box.open .message-content {
+            display: block;
+            opacity: 1;
+        }
+
+        .thank-you {
+            font-size: 1.5em;
+            color: #cc0033;
+            margin: 10px auto;
+            animation: pulse 1.5s infinite alternate;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .kirby-star {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            animation: star-fall 2s infinite;
+        }
+
+        @keyframes star-fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .fortune-cookie {
+            width: 80px;
+            height: 80px;
+            background: url('https://github.com/fcjoske/nikusha/blob/main/kirbywalk%20(1).gif?raw=true') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+            margin: 20px auto;
+            transition: transform 0.2s;
+        }
+
+        .fortune-cookie:hover {
+            transform: scale(1.1);
+        }
+
+        .fortune-message {
+            font-size: 1.2em;
+            color: #e28a18;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sparkle">💖 My Golden Rosanna 💖</div>
+
+    <div class="message-box" onclick="toggleMessage(this)">
+        Click to open the letter! ✉️
+        <div class="message-content">
+            Dear Rosanna, ❄️🌹<br><br>
+
+            We met on Speaky by pure chance—or maybe by fate dressed in a fluffy winter coat. 🧣<br><br>
+
+            You're from the beautiful land of Russia, with golden hair that could make Rapunzel jealous, eyes as blue as the sky (on a good Wi-Fi day), and skin as fair as snow. Honestly, Disney should be worried—they missed casting you as their next princess. 👑💙<br><br>
+
+            Our conversation began so randomly, but it already feels like one of those once-in-a-lifetime connections—unexpected, a bit silly, and full of promise. You’re surprisingly easy to talk to, even though I’m terrible at starting conversations. Like, world-class terrible. Like, "should be banned from small talk" terrible. 😅<br><br>
+
+            I don’t know where this friendship will go, but I hope it keeps going and going and going like an Energizer bunny on espresso. 🐰☕<br><br>
+
+            Thank you for being so sweet, kind, and patient—and for making my day feel 1000x brighter (approximately). I'm glad we met. Let's build a snowman someday, or at least a snow emoji ⛄.<br><br>
+
+            From your Brazilian amigo who’s learning the art of random conversation (slowly),<br>
+            <b>Felipe 🇧🇷✨</b><br><br>
+        </div>
+    </div>
+
+    <div class="thank-you">You shine brighter than Siberian snow! ❄️💙</div>
+    <div class="kirby-star">✨</div>
+
+    <div class="fortune-cookie" onclick="showFortune()"></div>
+    <div class="fortune-message" id="fortuneMessage"></div>
+
+    <script>
+        function toggleMessage(box) {
+            box.classList.toggle('open');
+            const content = box.querySelector('.message-content');
+            content.style.display = box.classList.contains('open') ? 'block' : 'none';
+            content.style.opacity = box.classList.contains('open') ? '1' : '0';
+        }
+
+        const fortunes = [
+            "You will meet someone amazing. Spoiler: it's already happening. 😉",
+            "A golden-haired beauty is thinking of you right now. (No pressure.)",
+            "Today’s lucky color: the exact shade of Rosanna’s eyes. 💙",
+            "Your next snowball fight will end in laughter and hot cocoa.",
+            "Be kind. Especially to people with blue eyes and charming accents.",
+            "Your destiny is filled with fluffy conversations and warm vibes.",
+            "Brazil + Russia = chaotic good energy. 🔥❄️",
+            "You will accidentally start a tradition with someone special.",
+            "Laughter is your secret weapon. Use it wisely (and daily). 😂",
+            "A message from someone sweet will make your day. Oh wait, it's here!",
+            "Your playlist will soon include Russian pop and samba. Get ready!",
+            "Snowflakes and sunshine are becoming best friends. Just like us.",
+            "The universe ships you two. 🚢",
+            "Your humor today is rated 12/10. Even the stars are laughing.",
+            "Don't worry, your soulmate speaks emoji too. 🥲💬❤️",
+            "You will invent a new language: Brussi-glish.",
+            "The stars have aligned. One said, 'Talk to her again!'",
+            "Your luck smells like fresh snow and pão de queijo.",
+            "A magical moment is on its way. Possibly after coffee.",
+            "If you smile right now, something good will happen. 😉",
+            "The sky is blue. Her eyes are blue. Coincidence? Nope.",
+            "A friendship is blooming... like winter flowers. Rare and lovely.",
+            "She thinks you're funny. Keep going!",
+            "Don't be afraid to be awkward. It's part of the charm.",
+            "You're one compliment away from winning someone's heart. ❤️",
+            "You were born to be silly at the right moment.",
+            "Someone from far away is sending warm thoughts your way.",
+            "Trust your jokes. One of them might become legendary.",
+            "You’re like a snowflake: unique, special, and sometimes melting.",
+            "You’ll be a snowman architect one day. Just accept it. ⛄",
+            "You might fall... in love, not on the ice (hopefully).",
+            "Today, flirt like it’s snowing outside. Softly and with style.",
+            "Someone out there thinks you're delightful. It's probably Rosanna.",
+            "Keep being sweet. It's contagious!",
+            "Your name was just added to the international 'cute list'.",
+            "Prepare to be charmed. Actually, you already are.",
+            "You're more fun than a Russian winter festival. 🇷🇺🎉",
+            "You + her = plot twist of the year.",
+            "Even the snow wants to know how your story ends.",
+            "This cookie is proud of you. 🍪",
+            "Smiles incoming... 3... 2... 1... 😄",
+            "Rosanna is 90% magic, 10% glitter. ✨",
+            "Today’s lucky object: her next message.",
+            "A heartwarming chat is about to happen.",
+            "Every message you send increases global cuteness by 3%.",
+            "Your vibes are sparkling like New Year's fireworks.",
+            "If feelings had a playlist, you'd be on repeat.",
+            "Don't stop now, the universe is watching and taking notes!",
+            "You're a walking rom-com. Embrace it.",
+            "You just unlocked a new friend achievement: Snow Queen’s Favorite ☃️👑"
+        ];
+
+        function showFortune() {
+            const message = fortunes[Math.floor(Math.random() * fortunes.length)];
+            document.getElementById('fortuneMessage').innerText = message;
+        }
+    </script>
+</body>
+</html>
